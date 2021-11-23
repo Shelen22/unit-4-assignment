@@ -1,0 +1,145 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> use test
+switched to db test
+> show collections
+users
+> db.users.find({}).pretty()
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce6c"),
+        "first_name" : "raj",
+        "last_name" : "savsani",
+        "email" : "raj@gmail.com",
+        "gender" : "male",
+        "age" : "23"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce6d"),
+        "first_name" : "shelen",
+        "last_name" : "sam",
+        "email" : "shelen@gmail.com",
+        "gender" : "male",
+        "age" : "21"
+}
+{ "_id" : ObjectId("619c9cedb4ef0d819134ce6e"), "age" : "20" }
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce6f"),
+        "first_name" : "aadil",
+        "last_name" : "khan",
+        "email" : "aadil@gmail.com",
+        "gender" : "male",
+        "age" : "20"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce70"),
+        "first_name" : "praveen",
+        "last_name" : "tiwari",
+        "email" : "pra@gmail.com",
+        "gender" : "male",
+        "age" : "25"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce71"),
+        "first_name" : "himanshu",
+        "last_name" : "soni",
+        "email" : "soni@gmail.com",
+        "gender" : "male",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce72"),
+        "first_name" : "swadha",
+        "last_name" : "solanki",
+        "email" : "swadha@gmail.com",
+        "gender" : "female",
+        "age" : "20"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce73"),
+        "first_name" : "ruchi",
+        "last_name" : "patidar",
+        "email" : "ruchi@gmail.com",
+        "gender" : "female",
+        "age" : "21"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce74"),
+        "first_name" : "raj",
+        "last_name" : "thakur",
+        "email" : "rajt@gmail.com",
+        "gender" : "male",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce75"),
+        "first_name" : "yogi",
+        "last_name" : "thakur",
+        "email" : "yogi@gmail.com",
+        "gender" : "male",
+        "age" : "26"
+}
+> db.usera.findOne({"_id" : ObjectId("619c9cedb4ef0d819134ce6e")})
+null
+> db.users.findOne({"_id" : ObjectId("619c9cedb4ef0d819134ce6e")})
+{ "_id" : ObjectId("619c9cedb4ef0d819134ce6e"), "age" : "20" }
+> db.users.update({"_id" : ObjectId("619c9cedb4ef0d819134ce6e")},{$set:{first_name:"manasvi",last_name:"kale",email:"manasvi@gmail.com",gender:"female"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.findOne({"_id" : ObjectId("619c9cedb4ef0d819134ce6e")})
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce6e"),
+        "age" : "20",
+        "email" : "manasvi@gmail.com",
+        "first_name" : "manasvi",
+        "gender" : "female",
+        "last_name" : "kale"
+}
+> db.usera.updateMany({age:"21"},{$set:{age:"22"}})
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+> db.users.updateMany({age:"21"},{$set:{age:"22"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.users.find({age:"22"}).pretty()
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce6d"),
+        "first_name" : "shelen",
+        "last_name" : "sam",
+        "email" : "shelen@gmail.com",
+        "gender" : "male",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce71"),
+        "first_name" : "himanshu",
+        "last_name" : "soni",
+        "email" : "soni@gmail.com",
+        "gender" : "male",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce73"),
+        "first_name" : "ruchi",
+        "last_name" : "patidar",
+        "email" : "ruchi@gmail.com",
+        "gender" : "female",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("619c9cedb4ef0d819134ce74"),
+        "first_name" : "raj",
+        "last_name" : "thakur",
+        "email" : "rajt@gmail.com",
+        "gender" : "male",
+        "age" : "22"
+}
+> db.users.deleteOne({"_id" : ObjectId("619c9cedb4ef0d819134ce71")})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.users.deleteMany({age:"22"})
+{ "acknowledged" : true, "deletedCount" : 3 }
+> db.users.delete({})
+uncaught exception: TypeError: db.users.delete is not a function :
+@(shell):1:1
+> db.dropDatabase()
+{ "ok" : 1 }
+> show collections
