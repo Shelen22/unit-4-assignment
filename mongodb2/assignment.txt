@@ -1,0 +1,90 @@
+
+db.movies.find({}).pretty();
+
+
+
+db.movies.find({movie_name: {$eq: "Beautiful Losers"}}).pretty();
+
+
+db.movies.find({movie_name: {$ne: "Beautiful Losers"}}).pretty();
+
+
+db.movies.find({budget: {$gte: 19000}}).pretty();
+
+
+db.movies.find({budget: {$lte: 19000}}).pretty();
+
+
+db.movies.find({
+    $and:[
+            {
+                production_year: {$gt: 2000}
+            },
+            {
+                budget: {$gt:10000}
+            }
+    ]
+}).pretty();
+
+
+db.movies.find({
+    $or:[
+            {
+                production_year: {$gt: 2000}
+            },
+            {
+                budget: {$gt:10000}
+            }
+    ]
+}).pretty();
+
+
+db.movies.find({
+    $nor: [
+        {
+            production_year: {$gt: 2000}
+        },
+        {
+            budget: {$gt: 10000}
+        }
+    ]
+}).pretty();
+
+
+
+db.movies.find({
+    $or : [
+        {
+            production_year: {$ne: 2000}
+        },
+        {
+            budget: {$ne: 10000}
+        }
+    ]
+}).pretty();
+
+
+db.movies.find({
+    $and: [
+        {
+            production_year: {$gte: 2000}
+        },
+        {
+            production_year: {$lte: 2010}
+        }
+    ]
+}).pretty();
+
+
+db.movies.find({
+
+        production_year: {$gt: 0}        
+
+}).sort({production_year: -1, movie_name: 1}).pretty();
+
+
+
+db.movies.find({}).skip(10).limit(5).pretty();
+
+
+
