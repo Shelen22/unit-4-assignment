@@ -23,8 +23,8 @@ router.post(
     }),
     body("pincode").custom((value) => {
       // value = 1900
-      const isNumber = /^[0-6]*$/.test(value); // true or false
-      if (!isNumber || value.length < 6 || value.length > 6) {
+      const isNumber = /^[0-9]*$/.test(value); // true or false
+      if (!isNumber || value.length > 6 || value.length < 6) {
         throw new Error("Pincode cannot be 6 digit");
       }
       return true;
