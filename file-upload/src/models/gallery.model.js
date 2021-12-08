@@ -1,8 +1,10 @@
+ 
 const {Schema, model} = require('mongoose');
+
 
 const gallerySchema = new Schema({
     user_id : {
-        type: mongoose.Schema.Types.ObjectId,
+        type:Schema.Types.ObjectId,
         ref: "user",
         required: true
     },
